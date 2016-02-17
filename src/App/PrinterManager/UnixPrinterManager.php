@@ -4,6 +4,7 @@ namespace App\PrinterManager;
 
 use App\Entity\{Printer, Job};
 use App\Command\CommandException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UnixPrinterManager extends PrinterManager {
     
@@ -50,7 +51,7 @@ class UnixPrinterManager extends PrinterManager {
         return $this->handlePrinterSettings($data);
     }
 
-    public function printFile(string $filename, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job {
+    public function printFile(UploadedFile $filename, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job {
         
     }
     

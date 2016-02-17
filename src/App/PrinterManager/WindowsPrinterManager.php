@@ -2,7 +2,8 @@
 
 namespace App\PrinterManager;
 
-use App\Entity\{Printer, Job};
+use App\Entity\Job;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class WindowsPrinterManager implements PrinterManagerInterface {
     
@@ -25,7 +26,7 @@ class WindowsPrinterManager implements PrinterManagerInterface {
         
     }
     
-    public function printFile(string $filename, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job {
+    public function printFile(UploadedFile $file, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job {
         
     }
     
