@@ -13,7 +13,7 @@ class PrinterController {
         $command->execute();
         $list = $command->commandResponse();
         
-        return $app->json($app['printer_helper']->listPrinters($list));
+        return $app->json($list);
     }
     
     public function printerSettings(Application $app, $printer)
@@ -22,7 +22,7 @@ class PrinterController {
         $command->execute();
         $list = $command->commandResponse();
         
-        return $app->json($app['printer_helper']->printerSettings($list));
+        return $app->json($list);
     }
     
     public function printDocument(Application $app, $printer)

@@ -2,7 +2,7 @@
 
 namespace App\PrinterManager;
 
-use App\Entity\{Printer, Job};
+use App\Entity\Job;
 
 interface PrinterManagerInterface {
     
@@ -15,7 +15,7 @@ interface PrinterManagerInterface {
     
     public function listJobsFromPrinter(string $printer): array;
     
-    public function getSettings(string $printer): array;
+    public function printerSettings(string $printer): array;
 
     public function printFile(string $filename, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job;
     

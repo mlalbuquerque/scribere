@@ -15,7 +15,7 @@ class PrinterSettingsCommand extends PrinterCommand {
     }
     
     public function execute() {
-        $this->response = $this->printerManager->getSettings($this->printer);
+        $this->response = $this->printerManager->printerSettings($this->printer);
     }
 
 }

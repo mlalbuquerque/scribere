@@ -17,8 +17,4 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     return $twig;
 }));
 
-$app['printer_helper'] = $app->share(function () {
-    return PrinterHelperFactory::build();
-});
-
 return $app;

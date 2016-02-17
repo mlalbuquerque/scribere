@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Helper;
+namespace App\PrinterManager;
 
-use App\Entity\{Job, Printer};
+use App\Entity\{Printer, Job};
 
-abstract class PrinterHelper implements PrinterHelperInterface {    
+abstract class PrinterManager implements PrinterManagerInterface {
     
     abstract protected function getPrinter(string $info, string $default_printer): Printer;
     
     abstract protected function getJob(string $info): Job;
-
+    
 }

@@ -13,7 +13,7 @@ class JobController {
         $command->execute();
         $list = $command->commandResponse();
         
-        return $app->json($app['printer_helper']->listJobs($list));
+        return $app->json($list);
     }
     
     public function listJobsFromPrinter(Application $app, string $printer)
@@ -22,7 +22,7 @@ class JobController {
         $command->execute();
         $list = $command->commandResponse();
         
-        return $app->json($app['printer_helper']->listJobsFromPrinter($list));
+        return $app->json($list);
     }
     
 }
