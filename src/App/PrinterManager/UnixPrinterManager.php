@@ -51,8 +51,30 @@ class UnixPrinterManager extends PrinterManager {
         return $this->handlePrinterSettings($data);
     }
 
-    public function printFile(UploadedFile $filename, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job {
+    public function printFile(
+            string $filename, 
+            string $printer, 
+            int $copies = 1, 
+            string $pages = 'all', 
+            int $orientation = self::PORTRAIT,
+            string $media_type = 'A4'): Job 
+    {
+        $command = 'lpr -P ' . $printer;
+        $command .= ($orientation == self::LANDSCAPE) ? ' -o landscape' : '';
+        $command .= (strtoupper($media_type) != 'A4') ? ' -o media=' . $media_type : '';
+        $command .= ($copies > 1) ? ' -#' . $copies : '';
+        $command .= (strtolower($pages) != 'all') ? ' -o page-ranges=' . $pages : '';
+        $command .= ' ' . $filename;
+        exec($command);
         
+        $file = new \Symfony\Component\HttpFoundation\File\File($filename);
+        
+        return new Job([
+            'position' => '1st',
+            'jobid'    => 1,
+            'filename' => $file->getFilename(),
+            'filesize' => $file->getSize()
+        ]);
     }
     
     public function cancelJob(int $jobid): bool {

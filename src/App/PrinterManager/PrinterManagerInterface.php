@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface PrinterManagerInterface {
     
-    const PORTRAIT = 100;
-    const LANDSCAPE = 101;
+    const PORTRAIT = 100,
+          LANDSCAPE = 101;
     
     public function listPrinters(): array;
     
@@ -18,7 +18,7 @@ interface PrinterManagerInterface {
     
     public function printerSettings(string $printer): array;
 
-    public function printFile(UploadedFile $file, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job;
+    public function printFile(string $filename, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT, string $media_type = 'A4'): Job;
     
     public function cancelJob(int $jobid): bool;
     

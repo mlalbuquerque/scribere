@@ -17,4 +17,6 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     return $twig;
 }));
 
+$app['upload_dir'] = __DIR__ . '/../var/upload';
+
 return $app;
