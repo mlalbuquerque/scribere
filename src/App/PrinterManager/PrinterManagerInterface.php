@@ -3,6 +3,7 @@
 namespace App\PrinterManager;
 
 use App\Entity\Job;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface PrinterManagerInterface {
     
@@ -17,7 +18,7 @@ interface PrinterManagerInterface {
     
     public function printerSettings(string $printer): array;
 
-    public function printFile(string $filename, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job;
+    public function printFile(UploadedFile $file, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT): Job;
     
     public function cancelJob(int $jobid): bool;
     

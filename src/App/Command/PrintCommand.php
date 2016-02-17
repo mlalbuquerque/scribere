@@ -3,21 +3,23 @@
 namespace App\Command;
 
 use App\PrinterManager\PrinterManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PrintCommand extends PrinterCommand {
     
-    private $filename, $copies, $pages, $orientation;
+    private $file, $printer, $copies, $pages, $orientation;
     
-    public function __construct($filename, $copies = 1, $pages = 'all', $orientation = PrinterManagerInterface::PORTRAIT) {
+    public function __construct(UploadedFile $file, string $printer = 'default', int $copies = 1, string $pages = 'all', int $orientation = PrinterManagerInterface::PORTRAIT) {
         parent::__construct();
-        $this->filename = $filename;
+        $this->file = $file;
+        $this->printer = $printer;
         $this->pages = $pages;
         $this->copies = $copies;
         $this->orientation = $orientation;
     }
 
     public function execute() {
-        $this->response = $this->printerManager->printFile($this->filename, $this->copies, $this->pages, $this->orientation);
+        $this->response = $this->printerManager->printFile($this->file, $this->printer, $this->copies, $this->pages, $this->orientation);
     }
 
 }
