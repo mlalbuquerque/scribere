@@ -6,8 +6,15 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use App\Command\{ListPrintersCommand, PrintCommand, PrinterSettingsCommand};
 
-class PrinterController {
+class PrinterController
+{
 
+    /**
+     * Shows the Printers list available by API
+     * 
+     * @param  Application $app The Silex Application object
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function listPrinters(Application $app)
     {
         $command = new ListPrintersCommand();
@@ -17,7 +24,14 @@ class PrinterController {
         return $app->json($list);
     }
     
-    public function printerSettings(Application $app, $printer)
+    /**
+     * Shows the printer settings
+     * 
+     * @param  Application $app     The Silex Application object
+     * @param  string      $printer The Printer name (as returned by PrinterController::listPrinters)
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function printerSettings(Application $app, string $printer)
     {
         $command = new PrinterSettingsCommand($printer);
         $command->execute();
@@ -26,7 +40,15 @@ class PrinterController {
         return $app->json($list);
     }
     
-    public function printDocument(Application $app, Request $request,  $printer)
+    /**
+     * Prints a document (file) on specific Printer (as returned by PrinterController::listPrinters)
+     * 
+     * @param  Application $app     The Silex Application object
+     * @param  Request     $request The Symfony Http Foundation Request object
+     * @param  string      $printer The Printer name (as returned by PrinterController::listPrinters)
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function printDocument(Application $app, Request $request, string $printer)
     {
         /* @var $document \Symfony\Component\HttpFoundation\File\UploadedFile */
         $document = $request->files->get('file');

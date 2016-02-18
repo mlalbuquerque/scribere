@@ -2,16 +2,31 @@
 
 namespace App\Command;
 
-class CancelJobCommand extends PrinterCommand {
-    
+/**
+ * Cancel Printing Job command
+ */
+class CancelJobCommand extends PrinterCommand
+{
+    /**
+     * @var int The Printing Job ID 
+     */
     private $jobid;
     
-    public function __construct(int $jobid) {
+    /**
+     * Constructs the command object using a Printing Job ID
+     * @param int $jobid The Printing Job ID
+     */
+    public function __construct(int $jobid)
+    {
         parent::__construct();
         $this->jobid = $jobid;
     }
 
-    public function execute() {
+    /**
+     * Executes command using \App\PrinterManager\PrinterManager::cancelJob
+     */
+    public function execute()
+    {
         $this->response = $this->printerManager->cancelJob($this->jobid);
     }
 
