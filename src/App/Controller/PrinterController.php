@@ -42,7 +42,7 @@ class PrinterController {
         $command->execute();
         $job = $command->commandResponse();
         
-        return $app->json($job);
+        return $app->json($job, 202);
     }
     
 }

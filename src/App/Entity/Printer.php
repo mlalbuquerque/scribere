@@ -13,4 +13,8 @@ class Printer {
         $this->default = $data['default'];
     }
     
+    public function __toString() {
+        return $this->name . ($this->default ? ' (default)' : '');
+    }
+    
 }

@@ -20,6 +20,6 @@ interface PrinterManagerInterface {
 
     public function printFile(string $filename, string $printer, int $copies = 1, string $pages = 'all', int $orientation = self::PORTRAIT, string $media_type = 'A4'): Job;
     
-    public function cancelJob(int $jobid): bool;
+    public function cancelJob(int $jobid): Job;
     
 }

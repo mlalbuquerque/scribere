@@ -9,9 +9,6 @@ abstract class PrinterCommand implements PrinterCommandInterface {
     protected $printerManager, $response;
     
     public function __construct() {
-        /**
-         * @var $this->printerManager \App\PrinterManager\PrinterManagerInterface
-         */
         $this->printerManager = PrinterManagerFactory::build();
         $this->response = null;
     }

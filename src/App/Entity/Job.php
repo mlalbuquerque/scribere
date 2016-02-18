@@ -13,4 +13,8 @@ class Job {
         $this->filesize = $data['filesize'];
     }
     
+    public function __toString() {
+        return $this->jobid . ': ' . $this->filename . ' (' . $this->filesize . ' B)';
+    }
+    
 }
