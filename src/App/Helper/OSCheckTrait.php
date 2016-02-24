@@ -14,11 +14,18 @@ trait OSCheckTrait {
      */
     public static function serverOS()
     {
-        $os_type = php_uname('s');
+        return self::OS(php_uname('s'));
+    }
+    
+    /**
+     * Gets OS from server
+     */
+    public static function OS($os_name)
+    {
         $os = null;
-        if (preg_match('/^(unix|linux|darwin)/i', $os_type) || preg_match('/bsd$/i', $os_type)) {
+        if (preg_match('/^(unix|linux|darwin)/i', $os_name) || preg_match('/bsd$/i', $os_name)) {
             $os = 'unix';
-        } elseif (preg_match('/^win)/i', $os_type)) {
+        } elseif (preg_match('/^win/i', $os_name)) {
             $os = 'windows';
         } else {
             throw new \Exception('OS not determined!');
